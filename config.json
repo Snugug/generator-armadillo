@@ -1,0 +1,24 @@
+{
+  "project": "Armadillo",
+  "server": {
+    "port": 8000
+  },
+  "export": {
+    "path": "export",
+    "assetPrefix": "armadillo"
+  },
+  "compass": {
+    "debugInfo": false,
+    "extensions": [
+      "toolkit",
+      "sassy-buttons",
+      "modular-scale",
+      "compass-normalize"
+    ]
+  },
+  "git": {
+    "defaultCommit": "Production build and commit",
+    "deployUpstream": "origin",
+    "deployBranch": "gh-pages"
+  }
+}
