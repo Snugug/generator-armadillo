@@ -13,7 +13,8 @@
       "toolkit",
       "sassy-buttons",
       "modular-scale",
-      "compass-normalize"
+      "compass-normalize",
+      "harsh"
     ]
   },
   "git": {
