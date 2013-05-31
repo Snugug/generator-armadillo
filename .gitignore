@@ -1,0 +1,6 @@
+node_modules
+temp/
+app/
+test/
+contributing.md
+readme.md
