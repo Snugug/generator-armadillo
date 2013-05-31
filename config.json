@@ -5,7 +5,7 @@
   },
   "export": {
     "path": "export",
-    "assetPrefix": "armadillo"
+    "assetPrefix": ""
   },
   "compass": {
     "debugInfo": false,
