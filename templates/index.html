@@ -1,17 +1,43 @@
 <html>
   <head>
     <title>{{page-title}}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     {{{style-ext 'style.css'}}}
-    
+<!--
     <script data-main="{{script-url 'main'}}" src="{{component-url 'requirejs/require.js'}}"></script>
-    
+ -->
+    {{{script-ext 'html5shiv/dist/html5shiv.js' true}}}
+    <script type="text/javascript">
+      (function() {
+        var config = {
+          kitId: 'rbm1lpa',
+          scriptTimeout: 3000
+        };
+        var h=document.getElementsByTagName("html")[0];h.className+=" wf-loading";var t=setTimeout(function(){h.className=h.className.replace(/(\s|^)wf-loading(\s|$)/g," ");h.className+=" wf-inactive"},config.scriptTimeout);var tk=document.createElement("script"),d=false;tk.src='//use.typekit.net/'+config.kitId+'.js';tk.type="text/javascript";tk.async="true";tk.onload=tk.onreadystatechange=function(){var a=this.readyState;if(d||a&&a!="complete"&&a!="loaded")return;d=true;clearTimeout(t);try{Typekit.load(config)}catch(b){}};var s=document.getElementsByTagName("script")[0];s.parentNode.insertBefore(tk,s)
+      })();
+    </script>
+
   </head>
 
   <body>
-    {{{body}}}
+    <header class="outter container">
+      <h1 class="title">Armadillo</h1>
+      <!-- <h3>Static Site Generator for Yeoman</h3> -->
+      <pre class="armadillo" aria-hidden="true">
+             ,.-----__
+          ,:::://///,:::-.
+        /:''/////// ``:::`;/|/
+       /'   ||||||     :://'`\
+      .' ,   ||||||     `/(  <span class="eye">e</span> \
+-===~__-'\__X_`````\_____/~`-._ `.
+            ~~        ~~       `~-'</pre>
+    </header>
+    <main class="container">
+      {{{body}}}
+    </main>
 
     <!-- JavaScript goes in the footer! -->
-  
+
   {{#if options.development}}
     <script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':{{options.lrport}}/livereload.js?snipver=1"></' + 'script>')
     </script>
