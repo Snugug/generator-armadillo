@@ -1,0 +1,136 @@
+<html>
+  <head>
+    <title>Armadillo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/css/style.css">
+<!--
+    <script data-main="//js/main" src="//components/requirejs/require.js"></script>
+ -->
+    <script src="/components/html5shiv/dist/html5shiv.js"></script>
+    <script type="text/javascript">
+      (function() {
+        var config = {
+          kitId: 'rbm1lpa',
+          scriptTimeout: 3000
+        };
+        var h=document.getElementsByTagName("html")[0];h.className+=" wf-loading";var t=setTimeout(function(){h.className=h.className.replace(/(\s|^)wf-loading(\s|$)/g," ");h.className+=" wf-inactive"},config.scriptTimeout);var tk=document.createElement("script"),d=false;tk.src='//use.typekit.net/'+config.kitId+'.js';tk.type="text/javascript";tk.async="true";tk.onload=tk.onreadystatechange=function(){var a=this.readyState;if(d||a&&a!="complete"&&a!="loaded")return;d=true;clearTimeout(t);try{Typekit.load(config)}catch(b){}};var s=document.getElementsByTagName("script")[0];s.parentNode.insertBefore(tk,s)
+      })();
+    </script>
+
+  </head>
+
+  <body>
+    <header class="outter container">
+      <h1 class="title">Armadillo</h1>
+      <!-- <h3>Static Site Generator for Yeoman</h3> -->
+      <pre class="armadillo" aria-hidden="true">
+             ,.-----__
+          ,:::://///,:::-.
+        /:''/////// ``:::`;/|/
+       /'   ||||||     :://'`\
+      .' ,   ||||||     `/(  <span class="eye">e</span> \
+-===~__-'\__X_`````\_____/~`-._ `.
+            ~~        ~~       `~-'</pre>
+    </header>
+    <main class="container">
+      <h2 id="whatisarmadillo">What is Armadillo</h2>
+
+<p>Armadillo is a <a href="http://yeoman.io">Yeoman</a> Generator designed for building static sites. It utilizes <a href="http://handlebarsjs.com">Handlebars</a> for HTML and <a href="http://sass-lang.com">Sass</a>+<a href="http://compass-style.org">Compass</a> for CSS. It also makes it easy to pull in <a href="http://requirejs.org">Require.js</a> and publish your site to <a href="http://pages.github.com">GitHub Pages</a>.</p>
+
+<h2 id="gettingstarted">Getting Started</h2>
+
+<p>Armadillo gets run from the command line, so you're going to need to be comfortable working in it. All of the following commands will need to be run from your command line. If you get permission issues, you will need to run the commands using <code>sudo</code>.</p>
+
+<ul>
+<li>Install Yeoman: <code>npm install -g yo grunt-cli bower</code></li>
+<li>Install Armadillo: <code>npm install -g generator-armadillo</code></li>
+<li>Run Armadillo (from within your project folder): <code>yo armadillo</code>    - Project Name: Your Project's Name.
+<ul><li>RequireJS: Includes Require.js (defaults <code>true</code>)</li>
+<li>GitHub Pages: Whether or not you'll be publishing to GitHub Pages (defaults <code>true</code>)</li></ul></li>
+</ul>
+
+<h2 id="usingarmadillo">Using Armadillo</h2>
+
+<p>To develop your site, run <code>grunt server</code> to run a development server. Include <code>--launch</code> to launch the site after the server has started.
+To package your site, run <code>grunt build</code>. This will package your site for production. Include <code>--commit</code> or <code>--commit="message"</code> to automatically commit the packaged site into your Git version control
+To deploy your site to GitHub Pages, run <code>grunt deploy</code> after you've built your site.
+If you would like to export your packaged site, run <code>grunt export</code>. This will export your packaged site to an <code>export</code> folder. If you would like to choose where to export the package to, include <code>--to="~/path/to/destination"</code>.</p>
+
+<h2 id="helperfunctions">Helper Functions</h2>
+
+<p>Armadillo comes with helper functions for use in your HTML and Markdown pages to ease development.</p>
+
+<ul>
+<li><code>{{image-url 'foo.png'}}</code>: Absolute path to an image in your Images directory. The file included should be relative to that directory.</li>
+<li><code>{{script-url 'foo.js'}}</code>: Absolute path to a JavaScript file in your JavaScript directory. The file should be relative to that directory.</li>
+<li><code>{{style-url 'foo.css'}}</code>: Absolute path to a CSS file in your CSS directory. The file should be relative to that directory, or it's relative path from your Sass directory (as the CSS will be compiled from your Sass)</li>
+<li><code>{{component-url 'foo/foo.js'}}</code>: Absolute path to a file from a component in your Component directory. The file should be relative to that directory</li>
+<li><code>{{{style-ext 'foo.css'}}}</code>: Writes a <code>&lt;link&gt;</code> tag to that CSS file. Can write as <code>{{{style-ext 'foo/foo.css' true}}}</code> to specify it's from a component. Paths should be relative to either the CSS directory or the Component directory.</li>
+<li><code>{{{script-ext 'foo.js'}}}</code>: Writes a <code>&lt;script&gt;</code> tag to that JS file. Can write as <code>{{{script-ext 'foo/foo.js' true}}}</code> to specify it's from a component. Paths should be relative to either the JS directory or the Component directory.</li>
+<li><code>{{page-title}}</code>: Writes out the page title, in the form of <code>Page Title | Project Name</code> for pages with a specified Page Title or <code>Project Name</code> if it doesn't. Used for setting the <code>&lt;title&gt;</code> tag in the <code>&lt;head&gt;</code>.</li>
+</ul>
+
+<h2 id="basicconfiguration">Basic Configuration</h2>
+
+<p>There is a <code>config.json</code> file that will allow you to control many of the aspects of Armadillo.</p>
+
+<ul>
+<li><strong>project</strong>: The name of your project. Will be used for your site's page title</li>
+<li><strong>server</strong>
+<ul><li><em>port</em>: The port the development server will run from</li></ul></li>
+<li><strong>export</strong>
+<ul><li><em>path</em>: The default path for <code>grunt export</code> to export to.</li>
+<li><em>assetPrefix</em>: A prefix for all assets when used through the asset helper functions. When using GitHub Pages, this will be the name of your GitHub project.</li></ul></li>
+<li><strong>compass</strong>
+<ul><li><em>debugInfo</em>: Whether you would like Sass Debug Info enabled during development</li>
+<li><em>extensions</em>: A list of Compass extensions you'd like to include. This replaces <code>require "extension"</code> that would go in your <code>config.rb</code> file.</li>
+<li><em>importPaths</em>: A list of additional import paths, mostly for use with Bower Components</li></ul></li>
+<li><strong>git</strong>
+<ul><li><em>defaultCommit</em>: The default commit message if you run <code>grunt build --commit</code>.</li>
+<li><em>deployUpstream</em>: The upstream remote name. Will only see this if you're deploying to GitHub</li>
+<li><em>deployBranch</em>: The branch you're deploying to. This uses a git subtree method, so this branch should be empty. Will only see this if you're deploying to GitHub</li></ul></li>
+</ul>
+
+<h2 id="advancedconfiguration">Advanced Configuration</h2>
+
+<p>There is a <code>.system.json</code> file that has advanced system-level settings that, if you change, will change many things throughout the project, so change with care. </p>
+
+<ul>
+<li><strong>generator</strong>
+<ul><li><em>pagesDir</em>: The directory of your content pages.</li>
+<li><em>templatesDir</em>: The directory of your page templates.</li>
+<li><em>partialsDir</em>: The directory of your partials</li>
+<li><em>helpers</em>: The file name of your helper JavaScript file</li></ul></li>
+<li><strong>assets</strong>
+<ul><li><em>imagesDir</em>: Images directory</li>
+<li><em>cssDir</em>: CSS Directory</li>
+<li><em>sassDir</em>: Sass Directory</li>
+<li><em>jsDir</em>: JavaScript Directory</li>
+<li><em>fontsDir</em>: Fonts Directory</li>
+<li><em>componentsDir</em>: Bower Components Directory</li></ul></li>
+<li><strong>server</strong>
+<ul><li><em>root</em>: Your web root directory</li></ul></li>
+<li><strong>export</strong>
+<ul><li><em>distPath</em>: Your build path directory</li></ul></li>
+</ul>
+
+<h2 id="configuringjshintandcsslint">Configuring JSHint and CSS Lint</h2>
+
+<p>Armadillo will help you make your code better by running your JavaScript through <a href="http://jshint.com/">JSHint</a> and your CSS through <a href="http://csslint.net/">CSS Lint</a>. You can configure JSHint by editing <code>.jshintrc</code> and CSS Lint by editing <code>.csslintrc</code>.</p>
+    </main>
+
+    <!-- JavaScript goes in the footer! -->
+
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-30577396-3', 'yoarmadillo.com');
+      ga('send', 'pageview');
+
+    </script>
+
+  </body>
+</html>
