@@ -6,3 +6,170 @@
 //
 // All styling, non box model properties go here
 ////////////////////////
+
+body {
+  // @include harsh(white, $green, .95);
+  @include harsh1;
+  background-attachment: fixed;
+  padding: 0;
+  margin: 0;
+
+  color: $white;
+}
+
+a {
+  color: tint($orange, 35%);
+  text-shadow: 0 0 2px $black;
+  text-decoration: none;
+
+  @include single-transition(color, .3s);
+
+  &:hover,
+  &:target {
+    color: $orange;
+  }
+}
+
+.armadillo {
+  width: 22em;
+  margin: 0 auto;
+  display: block;
+  font-family: "source-code-pro" monospace;
+  font-weight: 800;
+  color: $orange;
+  text-shadow: 0 0 1em $black;
+
+  @include single-transition(font-size, .3s);
+
+  font-size: .8em;
+
+  @include breakpoint(450px) {
+    font-size: 1em;
+    overflow: initial;
+  }
+
+  @include breakpoint(688px) {
+    float: left;
+    margin-right: -100%;
+    margin-left: 0;
+  }
+
+  .eye {
+    color: $white;
+    text-shadow: 0 0 1em $white;
+  }
+}
+
+.container {
+  padding: .5rem;
+  max-width: 790px;
+  margin: 0 auto;
+}
+
+h1 {
+  font-family: sans-serif;
+}
+
+header.outter {
+  @include clearfix;
+  padding-bottom: 0;
+  position: relative;
+
+  .title {
+    color: $gold;
+
+    font-family: "ff-cocon-web-pro" sans-serif;
+    font-weight: 700;
+    display: block;
+    text-transform: uppercase;
+    @include transform(skewX(-10deg) skewY(-10deg));
+
+    $shadow: 0 0 .15em $black;
+
+    padding: .25em;
+    border: .25em solid $gold;
+    border-radius: .15em;
+    text-shadow: $shadow;
+    box-shadow: $shadow, $shadow inset;
+
+    width: 7em;
+    margin-right: 50%;
+    right: -3.5em;
+    position: relative;
+
+    @include breakpoint(688px) {
+      position: absolute;
+      margin-right: 0;
+      left: 24rem;
+      // right:;
+    }
+
+    @include single-transition(font-size .1s);
+
+    font-size: 2.15em;
+
+    @include breakpoint(450px) {
+      font-size: 2.5em;
+    }
+
+    // @include breakpoint(1150px) {
+    //   font-size: 3em;
+    // }
+
+    float: right;
+    // margin-right: -100%;
+    // margin-left: 30%;
+  }
+}
+
+main {
+  padding-top: 0;
+  overflow: hidden;
+  line-height: golden-ratio();
+
+  @include breakpoint(464px) {
+    font-size: 1.25em;
+  }
+
+  @include breakpoint(514px) {
+    font-size: 1.5em;
+  }
+
+  code {
+    background: $black;
+    background: rgba($black, .75);
+    padding: 0 .5em;
+  }
+}
+
+code {
+  font-family: "source-code-pro" monospace;
+  font-weight: 400;
+
+  li & {
+    display: block;
+
+    ul:nth-of-type(2) & {
+      display: inline;
+    }
+  }
+
+  li li & {
+    display: inline;
+  }
+}
+
+pre {
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+
+  code {
+    padding: .5em;
+  }
+}
+
+p pre,
+p code {
+  display: inline-block;
+}
