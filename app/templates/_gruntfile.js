@@ -81,11 +81,11 @@ module.exports = function (grunt) {
         tasks: ['jshint', 'uglify:dev']
       },
       images: {
-        files: [imagesDir + '/**'],
+        files: [imagesDir + '/**/*'],
         tasks: ['copy:dev']
       },
       fonts: {
-        files: [fontsDir + '/**'],
+        files: [fontsDir + '/**/*'],
         tasks: ['copy:dev']
       },
       sass: {
