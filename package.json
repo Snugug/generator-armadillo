@@ -29,8 +29,7 @@
     "generator-mocha": "~0.1.1"
   },
   "devDependencies": {
-    "mocha": "~1.9.0",
-    "grunt-bump": "0.0.2"
+    "mocha": "~1.9.0"
   },
   "engines": {
     "node": ">=0.8.0"
