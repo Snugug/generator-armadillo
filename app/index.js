@@ -163,7 +163,7 @@ AppGenerator.prototype.packageJSON = function packageJSON() {
 
 AppGenerator.prototype.git = function git() {
   this.copy('gitignore', this.projectDir + '.gitignore');
-  this.copy('gitattributes', this.projectDir + '.gitattributes');
+  this.template('gitattributes', this.projectDir + '.gitattributes');
 };
 
 AppGenerator.prototype.bower = function bower() {
