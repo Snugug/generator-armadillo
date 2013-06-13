@@ -87,7 +87,7 @@ There is a `.system.json` file that has advanced system-level settings that, if 
 
 ## Configuring JSHint and CSS Lint
 
-Armadillo will help you make your code better by running your JavaScript through [JSHint](http://jshint.com/) and your CSS through [CSS Lint](http://csslint.net/). You can configure JSHint by editing `.jshintrc` and CSS Lint by editing `.csslintrc`.
+Armadillo will help you make your code better by running your JavaScript through [JSHint](http://jshint.com/) and your CSS through [CSS Lint](http://csslint.net/). You can configure JSHint by editing `.jshintrc` and CSS Lint by editing `.csslintrc`. JSHint comes pre-configured with some sensible defaults. CSSLint comes with all options disabled, you can enable the features you'd like should you choose.
 	
 
 ## License
