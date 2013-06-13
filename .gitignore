@@ -1,5 +1,7 @@
+export/
 node_modules
 temp/
+.dist/
 .www/
 components/
 sass/
