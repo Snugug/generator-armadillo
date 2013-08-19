@@ -1,3 +1,13 @@
+var marked = require('marked');
+marked.setOptions({
+  gfm: true,
+  langPrefix: 'language-',
+  tables: true,
+  breaks: true,
+  smartLists: true,
+  smartypants: true
+});
+
 module.exports = {
   'image-url': function(src) {
     return this.options.assets + '/' + this.options.userConfig.assets.imagesDir + '/' + src;
@@ -37,10 +47,23 @@ module.exports = {
   },
   'page-title': function() {
     if (this.page.title) {
-      return this.page.title + ' | ' + this.options.userConfig.project;
+      return this.page.title + ' | ' + this.options.userConfig.client.name;
     }
     else {
-      return this.options.userConfig.project;
+      return this.options.userConfig.client.name;
     }
+  },
+  'classify': function(list) {
+    return list.toString().replace(/,/g , ' ');
+  },
+  'markdown': function(md) {
+    return marked(md.fn(1));
+  },
+  'for': function(from, to, incr, block) {
+    var accum = '';
+    for (var i = from; i < to; i += incr) {
+      accum += block.fn(i);
+    }
+    return accum;
   }
 };

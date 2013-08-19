@@ -33,13 +33,13 @@ var AppGenerator = module.exports = function Appgenerator(args, options, config)
       // Also available, this.spawnCommand
 
       // Bundle Install
-      spawn('bundle', ['install'], {cwd: this.projectDir}).stdout.on('data', function(data) {
-        if (!options['silent']) {
-          console.log(data.toString());
-        }
-      });
+      // spawn('bundle', ['install'], {cwd: this.projectDir}).stdout.on('data', function(data) {
+      //   if (!options['silent']) {
+      //     console.log(data.toString());
+      //   }
+      // });
 
-      // Bower Install
+      Bower Install
       spawn('bower', ['install'], {cwd: this.projectDir}).stdout.on('data', function(data) {
         if (!options['silent']) {
           console.log(data.toString());
@@ -54,10 +54,10 @@ var AppGenerator = module.exports = function Appgenerator(args, options, config)
       });
 
       // Log the install
-      console.log("\nI'm all done! If your installs did not finish properly, run ".white + "bundle install & bower install & npm install".yellow + " to finish installation.");
+      console.log("\nI'm all done! If your installs did not finish properly, run ".white + "bower install & npm install".yellow + " to finish installation.");
     }
     else {
-      var bye = "\n I'm all done! Now run ".white + "bundle install & bower install & npm install".yellow + " to finish installation.";
+      var bye = "\n I'm all done! Now run ".white + "bower install & npm install".yellow + " to finish installation.";
       console.log(bye);
     }
   });
@@ -143,9 +143,9 @@ AppGenerator.prototype.askFor = function askFor() {
     this.requireJS = props.requireJS;
     this.ghDeploy = props.ghDeploy;
 
-    this.projectDir = './';
-    if (this.options['new-dir']) {
-      this.projectDir = this.projectSlug + '/';
+    this.projectDir = this.projectSlug + '/';
+    if (this.options['init']) {
+      this.projectDir = './';
     }
 
 
@@ -192,14 +192,13 @@ AppGenerator.prototype.editorConfig = function editorConfig() {
 
 AppGenerator.prototype.app = function app() {
   this.copy('helpers.js', this.projectDir + 'helpers.js');
-  this.copy('Gemfile', this.projectDir + 'Gemfile');
   this.copy('system.json', this.projectDir + '.system.json');
-  this.template('_config.json', this.projectDir + 'config.json');
+  this.template('_config.yml', this.projectDir + 'config.yml');
 
   this.mkdir(this.projectDir + 'images');
   this.directory('sass', this.projectDir + 'sass');
   this.directory('pages', this.projectDir + 'pages');
+  this.directory('templates', this.projectDir + 'templates');
 
-  this.template('index.html', this.projectDir + 'templates/index.html');
   this.template('main.js', this.projectDir + 'js/main.js');
 };

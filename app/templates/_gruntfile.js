@@ -1,4 +1,6 @@
 'use strict';
+var os = require('os');
+var _ = require('underscore');
 
 module.exports = function (grunt) {
 
@@ -8,7 +10,7 @@ module.exports = function (grunt) {
   // Combine with System options
   //////////////////////////////
   var deepmerge = require('deepmerge');
-  var userConfig = grunt.file.readJSON('config.json');
+  var userConfig = grunt.file.readYAML('config.yml');
   userConfig = deepmerge(userConfig, grunt.file.readJSON('.system.json'));
 
   // Asset Paths
@@ -29,12 +31,23 @@ module.exports = function (grunt) {
 
   // Server Configuration
   var port = userConfig.server.port;
-  var lrport = userConfig.server.port + 1;
+  var lrport = port + 1;
+  var wnport = port + 2;
   var root = userConfig.server.root;
+  var hostname = 'localhost';
+  var remoteDebug = false;
+  if (userConfig.server.remoteAccess) {
+    hostname = '*';
+    remoteDebug = true;
+  }
+  var remoteHost = os.hostname() + '.local';
 
   // Compass Configuration
   var debugInfo = userConfig.compass.debugInfo;
-  var extensions = userConfig.compass.extensions;
+  var extensions = [];
+  _.forEach(userConfig.compass.dependencies, function(v, e) {
+    extensions.push(e);
+  });
 
   // Export Configuration
   var distPath = userConfig.export.distPath;
@@ -55,7 +68,8 @@ module.exports = function (grunt) {
       server: {
         options: {
           port: port,
-          base: root
+          base: root,
+          hostname: hostname
         }
       }
     },
@@ -111,13 +125,15 @@ module.exports = function (grunt) {
           ext: '.html'
         }],
         options: {
-          partialsGlob: partialsDir + '/*.html',
+          partialsGlob: [partialsDir + '/**/*.html', partialsDir + '/**/*.md'],
           templates: templatesDir,
           handlebarsHelpers: helpers,
           userConfig: userConfig,
           environment: 'dev',
           development: true,
           lrport: lrport,
+          wnport: wnport,
+          remoteDebug: remoteDebug,
           assets: ''
         }
       },
@@ -129,7 +145,7 @@ module.exports = function (grunt) {
           ext: '.html'
         }],
         options: {
-          partialsGlob: partialsDir + '/*.html',
+          partialsGlob: [partialsDir + '/**/*.html', partialsDir + '/**/*.md'],
           templates: templatesDir,
           handlebarsHelpers: helpers,
           userConfig: userConfig,
@@ -301,15 +317,35 @@ module.exports = function (grunt) {
     // Parallel Task
     parallel: {
       assets: {
-        grunt: true,
+        options: {
+          grunt: true
+        },
         tasks: ['imagemin', 'svgmin', 'uglify:dist', 'copy:dist', 'generator:dist']
+      },
+      remote: {
+        options: {
+          grunt: true,
+          stream: true
+        },
+        tasks: ['watch', 'exec:weinre']
+      },
+      remoteLaunch: {
+        options: {
+          grunt: true,
+          stream: true
+        },
+        tasks: ['watch', 'exec:weinre', 'exec:launch:' + remoteHost, 'exec:launch:' + remoteHost + ':' + wnport + ':client']
       }
     },
 
     // Exec Task
     exec: {
       launch: {
-        cmd: 'open http://localhost:' + port + '&& echo "Launched localhost:"' + port
+        cmd: function(host, prt, suffix) {
+          prt = prt || port;
+          suffix = suffix || '';
+          return 'open http://' + host + ':' + prt + '/' + suffix;
+        }
       },
       commit: {
         cmd: function(commit) {
@@ -323,6 +359,34 @@ module.exports = function (grunt) {
         cmd: function(path) {
           return 'cp -r ' + distPath + ' ' + path;
         }
+      },
+      weinre: {
+        cmd: 'weinre --httpPort ' + wnport + ' --boundHost -all-'
+            },
+      bundle: {
+        cmd: function(path) {
+          if (path === '.') {
+            return 'bundle install';
+          }
+          else {
+            return 'cd ' + path + '/ && bundle install && cd ..';
+          }
+        }
+      }
+    },
+
+    bump: {
+      options: {
+        files: [
+          'package.json',
+          'bower.json',
+          '.system.json'
+        ],
+        commit: userConfig.bump.commit,
+        commitFiles: userConfig.bump.files,
+        createTag: userConfig.bump.tag,
+        push: userConfig.bump.push,
+        pushTo: userConfig.git.deployUpstream
       }
     }
 
@@ -385,7 +449,20 @@ module.exports = function (grunt) {
   });
 
   //////////////////////////////
-  // Server Tasks
+  // Tag Task
+  //////////////////////////////
+  grunt.registerTask('tag', 'Tags your release', function() {
+    var push = grunt.option('push');
+
+    grunt.task.run('exec:tagMake');
+
+    if (push) {
+      grunt.task.run('exec:tagPush');
+    }
+  });
+
+  //////////////////////////////
+  // Server Task
   //////////////////////////////
   grunt.registerTask('server-init', [
     'copy:dev',
@@ -400,13 +477,46 @@ module.exports = function (grunt) {
 
     var launch = grunt.option('launch');
 
+    grunt.task.run(['bundler']);
+
     grunt.task.run(['server-init', 'connect']);
 
-    if (launch) {
-      grunt.task.run('exec:launch');
+    if (hostname == '*') {
+      grunt.task.run(['hostname']);
+      if (launch) {
+  grunt.task.run(['parallel:remoteLaunch']);
+      }
+      else {
+  grunt.task.run(['parallel:remote']);
+      }
     }
+    else {
+      if (launch) {
+  grunt.task.run('exec:launch:localhost');
+      }
+      grunt.task.run('watch');
+    }
+  });
 
-    grunt.task.run('watch');
+  //////////////////////////////
+  // Hostname
+  //////////////////////////////
+  grunt.registerTask('hostname', 'Find Hostname', function() {
+    console.log('Server available on local network at http://' + remoteHost + ':' + port);
+    console.log('Remote inspector available on local network at http://' + remoteHost + ':' + wnport + '/client');
+  });
 
+  //////////////////////////////
+  // Update Bundler
+  //////////////////////////////
+  grunt.registerTask('bundler', 'Manages Development Dependencies', function(path) {
+    var path = path || '.';
+    var gemfileContent = "# Pull gems from RubyGems\nsource 'https://rubygems.org'\n";
+    _.forEach(userConfig.compass.dependencies, function(v, e) {
+      gemfileContent += "gem '" + e + "', '" + v + "'\n";
+    });
+    grunt.file.write(path + '/Gemfile', gemfileContent);
+
+    grunt.task.run(['exec:bundle:' + path]);
   });
 };

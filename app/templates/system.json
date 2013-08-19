@@ -1,4 +1,7 @@
 {
+  "client": {
+    "version": "0.0.0"
+  },
   "generator": {
     "pagesDir": "pages",
     "templatesDir": "templates",
@@ -11,7 +14,7 @@
     "sassDir": "sass",
     "jsDir": "js",
     "fontsDir": "fonts",
-    "componentsDir": "components"
+    "componentsDir": "bower_components"
   },
   "server": {
     "root": ".www"
