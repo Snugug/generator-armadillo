@@ -3,13 +3,14 @@ var path = require('path');
 var assert = require('yeoman-assert');
 var helpers = require('yeoman-generator').test;
 
-describe('generator-armadillo:app (CircleCI, Deploy)', function () {
+describe('generator-armadillo:app (Travis CI, No Deploy)', function () {
   before(function (done) {
     helpers.run(path.join(__dirname, '../generators/app'))
       .withPrompts({
         project: 'foo',
-        ghPages: true,
-        cid: 'CircleCI',
+        ghPages: false,
+        gitInit: true,
+        cid: 'Travis CI',
         email: 'foo@bar.baz',
         ghRepo: 'https://github.com/Snugug/gulp-armadillo.git'
       })
@@ -49,12 +50,12 @@ describe('generator-armadillo:app (CircleCI, Deploy)', function () {
     assert.file(['Gulpfile.js']);
   });
 
-  it('creates Circle file', function () {
-    assert.file(['circle.yml']);
+  it('creates Travis file', function () {
+    assert.file(['.travis.yml']);
   });
 
   it('creates deploy file', function () {
-    assert.file(['.deploy.sh']);
+    assert.noFile(['.deploy.sh']);
   });
 
   it('creates pages files', function () {
