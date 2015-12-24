@@ -3,27 +3,22 @@
 
 ## Installation
 
-First, install [Yeoman](http://yeoman.io) and generator-armadillo using [npm](https://www.npmjs.com/) (we assume you have pre-installed [node.js](https://nodejs.org/)).
+First, install [Yeoman](http://yeoman.io) and generator-armadillo using [npm](https://www.npmjs.com/) (we assume you've followed Armadillo's [Pre Setup instructions](https://github.com/Snugug/gulp-armadillo/wiki/Developing-with-the-Armadillo#pre-setup)).
 
 ```bash
 npm install -g yo
 npm install -g generator-armadillo
 ```
 
-Then generate your new project:
+Then, have Yeoman take your Armadillo for a walk and together, they'll build you a new project:
 
 ```bash
 yo armadillo
 ```
 
-## Getting To Know Yeoman
-
-Yeoman has a heart of gold. He&#39;s a person with feelings and opinions, but he&#39;s very easy to work with. If you think he&#39;s too opinionated, he can be easily convinced. Feel free to [learn more about him](http://yeoman.io/).
-
 ## License
 
 MIT © [Sam Richard](https://snugug.com/)
-
 
 [npm-image]: https://badge.fury.io/js/generator-armadillo.svg
 [npm-url]: https://npmjs.org/package/generator-armadillo
