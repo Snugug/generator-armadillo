@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>{% if title %}{{ title }} | {% endif %}<%= name %></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- build:css /css/style.css -->
+  <!-- Put CSS here -->
+  <link rel="stylesheet" href="/css/style.css">
+  <!-- endbuild -->
+</head>
+<body>
+
+  <header>
+    <h1 class="base--h1">{{ title }}</h1>
+  </header>
+
+  <main>
+    {% block content %}{% endblock %}
+  </main>
+
+  <!-- build:js js/app.js -->
+  <!-- Put JS here -->
+  <script src="js/app.js"></script>
+  <!-- endbuild -->
+</body>
+</html>
