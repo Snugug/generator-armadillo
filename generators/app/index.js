@@ -92,7 +92,10 @@ module.exports = yeoman.generators.Base.extend({
       this.props = props;
       // To access props later use this.props.someOption;
       this.appname = _s.slugify(props.project);
-      this.props.repoSlug = props.ghRepo.match(/((git|ssh|http(s)?)|(git@[\w\.]+))(:(\/\/)?)([\w\.@\:\/\-~]+)(\.git)(\/)?/i)[7];
+      if (props.ghRepo) {
+        this.props.repoSlug = props.ghRepo.match(/((git|ssh|http(s)?)|(git@[\w\.]+))(:(\/\/)?)([\w\.@\:\/\-~]+)(\.git)(\/)?/i)[7];
+      }
+
 
       done();
     }.bind(this));
