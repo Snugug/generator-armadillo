@@ -13,6 +13,6 @@
   "devDependencies": {
     "bower": "^1.4.1",
     "gulp": "^3.8.11",
-    "gulp-armadillo": "^2.0.0"
+    "gulp-armadillo": "^2.0.1"
   }
 }
