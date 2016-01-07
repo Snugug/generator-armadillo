@@ -1,6 +1,6 @@
 {
   "name": "generator-armadillo",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "A Yeoman generator for Armadillo!",
   "homepage": "https://github.com/Snugug/gulp-armadillo",
   "author": {
@@ -9,7 +9,8 @@
     "url": "https://snugug.com/"
   },
   "files": [
-    "generators"
+    "generators",
+    "helpers"
   ],
   "main": "generators/index.js",
   "keywords": [
