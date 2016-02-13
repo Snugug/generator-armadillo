@@ -29,7 +29,7 @@
   "devDependencies": {
     "yeoman-assert": "^2.0.0",
     "gulp": "^3.6.0",
-    "gulp-eslint": "^1.0.0",
+    "gulp-eslint": "^2.0.0",
     "gulp-exclude-gitignore": "^1.0.0",
     "gulp-istanbul": "^0.9.0",
     "gulp-mocha": "^2.0.0",
