@@ -21,7 +21,7 @@
     "fs-extra": "^0.26.3",
     "lodash": "^3.10.1",
     "nodegit": "^0.6.3",
-    "underscore.string": "^3.2.2",
+    "underscore.string": "^3.3.4",
     "validator": "^4.4.0",
     "yeoman-generator": "^0.21.1",
     "yosay": "^1.0.2"
