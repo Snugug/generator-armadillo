@@ -24,7 +24,7 @@
     "underscore.string": "^3.2.2",
     "validator": "^4.4.0",
     "yeoman-generator": "^0.21.1",
-    "yosay": "^1.0.2"
+    "yosay": "^1.2.0"
   },
   "devDependencies": {
     "yeoman-assert": "^2.0.0",
