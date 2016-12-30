@@ -1,42 +1,75 @@
 {
   "name": "generator-armadillo",
-  "version": "0.2.0",
-  "description": "Yeoman generator for static websites",
+  "version": "0.0.0",
+  "description": "Let Armadillo build your static site for you",
+  "homepage": "https://github.com/Snugug/gulp-armadillo",
+  "author": {
+    "name": "Sam Richard",
+    "email": "sam@snug.ug",
+    "url": "https://snugug.com"
+  },
+  "files": [
+    "generators"
+  ],
+  "main": "generators/index.js",
   "keywords": [
     "yeoman-generator",
     "web",
     "app",
-    "front-end",
-    "h5bp",
-    "modernizr"
+    "jekyll",
+    "static"
   ],
-  "homepage": "https://github.com/snugug/generator-armadillo",
-  "bugs": "https://github.com/snugug/generator-armadillo/issues",
-  "author": "Sam Richard",
-  "main": "app/index.js",
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/snugug/generator-armadillo.git"
-  },
-  "scripts": {
-    "test": "mocha --reporter spec"
-  },
   "dependencies": {
-    "yeoman-generator": "~0.11.1",
-    "cheerio": "~0.10.8"
-  },
-  "peerDependencies": {
-    "generator-mocha": "~0.1.1"
+    "chalk": "^1.1.3",
+    "fs-extra": "^1.0.0",
+    "lodash": "^4.17.3",
+    "yeoman-generator": "^0.22.0"
   },
   "devDependencies": {
-    "mocha": "~1.9.0"
+    "eslint": "^3.12.2",
+    "eslint-config-xo-space": "^0.12.0",
+    "ghooks": "^2.0.0",
+    "gulp": "^3.9.0",
+    "gulp-coveralls": "^0.1.0",
+    "gulp-eslint": "^3.0.1",
+    "gulp-exclude-gitignore": "^1.0.0",
+    "gulp-istanbul": "^0.10.3",
+    "gulp-line-ending-corrector": "^1.0.1",
+    "gulp-mocha": "^2.0.0",
+    "gulp-nsp": "^2.1.0",
+    "gulp-plumber": "^1.0.0",
+    "punchcard-commit-msg": "^1.0.1",
+    "punchcard-semantic-release": "^2.0.4",
+    "semantic-release": "^6.3.2",
+    "yeoman-assert": "^2.0.0",
+    "yeoman-test": "^1.0.0"
   },
-  "engines": {
-    "node": ">=0.8.0"
-  },
-  "licenses": [
-    {
-      "type": "BSD"
+  "eslintConfig": {
+    "extends": "xo-space",
+    "parserOptions": {
+      "ecmaVersion": 6
+    },
+    "env": {
+      "mocha": true
     }
-  ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Snugug/generator-armadillo.git"
+  },
+  "scripts": {
+    "prepublish": "gulp prepublish",
+    "test": "gulp",
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
+  },
+  "license": "MIT",
+  "config": {
+    "ghooks": {
+      "commit-msg": "punchcard-commit-msg"
+    }
+  },
+  "release": {
+    "analyzeCommits": "punchcard-semantic-release/analyze",
+    "generateNotes": "punchcard-semantic-release/notes"
+  }
 }

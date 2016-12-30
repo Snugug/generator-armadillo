@@ -1,0 +1,14 @@
+{
+  "name": "blog",
+  "version": "0.0.0",
+  "scripts": {
+    "gulp": "gulp",
+    "start": "gulp",
+    "test": "gulp deploy:dry"
+  },
+  "dependencies": {
+    "gulp": "^3.9.1",
+    "gulp-armadillo": "^3.6.0",
+    "sass-toolkit": "^2.10.2"
+  }
+}

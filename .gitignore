@@ -1,8 +1,2 @@
-export/
 node_modules
-temp/
-.dist/
-.www/
-components/
-sass/
-!app/templates/sass/
+coverage

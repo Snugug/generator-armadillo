@@ -1,0 +1,6 @@
+@import 'toolkit/reset';
+@import 'toolkit';
+
+.flexible-video {
+  @include ir;
+}
