@@ -1,5 +1,5 @@
 {
-  "name": "blog",
+  "name": "<%= name %>",
   "version": "0.0.0",
   "scripts": {
     "gulp": "gulp",
