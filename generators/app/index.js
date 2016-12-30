@@ -34,6 +34,7 @@ module.exports = yeoman.Base.extend({
       this.props = props;
       // To access props later use this.props.someOption;
       this.appname = _.kebabCase(props.project);
+      this.project = props.project;
 
       done();
     }.bind(this));
@@ -71,6 +72,12 @@ module.exports = yeoman.Base.extend({
       this.templatePath('_travis.yml'),
       this.destinationPath('.travis.yml')
     );
+
+    this.fs.copyTpl(
+      this.templatePath('_package.json'),
+      this.destinationPath('package.json'),
+      { name: this.appname }
+    );
   },
 
   writing: function () {
@@ -97,9 +104,10 @@ module.exports = yeoman.Base.extend({
       this.destinationPath('pages')
     );
 
-    this.fs.copy(
+    this.fs.copyTpl(
       this.templatePath('_index.html'),
-      this.destinationPath('templates/_index.html')
+      this.destinationPath('templates/_index.html'),
+      { name: this.project }
     );
 
     this.fs.copy(
