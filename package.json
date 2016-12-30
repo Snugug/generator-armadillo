@@ -21,10 +21,8 @@
   ],
   "dependencies": {
     "fs-extra": "^1.0.0",
-    "gulp-armadillo": "^3.6.0",
     "lodash": "^4.17.3",
-    "yeoman-generator": "^0.22.0",
-    "yosay": "^1.0.2"
+    "yeoman-generator": "^0.22.0"
   },
   "devDependencies": {
     "eslint": "^2.1.0",

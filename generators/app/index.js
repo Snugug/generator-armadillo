@@ -3,7 +3,7 @@ const yeoman = require('yeoman-generator');
 const fs = require('fs-extra');
 const path = require('path');
 const _ = require('lodash');
-const armadillo = require('gulp-armadillo/lib/helpers/armadillo');
+const armadillo = require('../../helpers/armadillo');
 
 module.exports = yeoman.Base.extend({
 
@@ -11,7 +11,9 @@ module.exports = yeoman.Base.extend({
     var done = this.async();
 
     // Have Yeoman greet the user.
-    armadillo('Let\'s make a website!');
+    this.log(
+      armadillo('Let\'s make a website!')
+    );
 
     var prompts = [
       {
@@ -39,7 +41,9 @@ module.exports = yeoman.Base.extend({
 
   configuring: function () {
     if (path.basename(this.destinationPath()) !== this.appname) {
-      armadillo('Making folder `' + this.appname + '` for you');
+      this.log(
+        armadillo('Making folder `' + this.appname + '` for you')
+      );
 
       fs.ensureDirSync(this.appname);
       this.destinationRoot(this.destinationPath(this.appname));
