@@ -131,5 +131,15 @@ module.exports = yeoman.Base.extend({
 
   install: function () {
     this.npmInstall();
+  },
+
+  end: function () {
+    var done = this.async();
+
+    process.stdout.write('\x1Bc');
+    this.log(
+      armadillo('All done!')
+    );
+    done();
   }
 });
