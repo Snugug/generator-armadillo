@@ -1,9 +1,9 @@
 'use strict';
-const yeoman = require('yeoman-generator');
-const fs = require('fs-extra');
-const path = require('path');
-const _ = require('lodash');
-const armadillo = require('../../helpers/armadillo');
+var yeoman = require('yeoman-generator');
+var fs = require('fs-extra');
+var path = require('path');
+var _ = require('lodash');
+var armadillo = require('../../helpers/armadillo');
 
 module.exports = yeoman.Base.extend({
 
@@ -74,7 +74,7 @@ module.exports = yeoman.Base.extend({
   },
 
   writing: function () {
-    const folders = [
+    var folders = [
       'images',
       'videos',
       'audio',

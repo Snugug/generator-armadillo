@@ -1,11 +1,11 @@
 'use strict';
 
-const chalk = require('chalk');
-let counter = 0;
+var chalk = require('chalk');
+var counter = 0;
 
 module.exports = text => {
-  const border = Array(text.length + 3).join('-');
-  let armadillo = '';
+  var border = Array(text.length + 3).join('-');
+  var armadillo = '';
 
   // ////////////////////////////
   // Armadillo ASCII Art
