@@ -46,6 +46,9 @@
   },
   "eslintConfig": {
     "extends": "xo-space",
+    "parserOptions": {
+      "ecmaVersion": 6
+    },
     "env": {
       "mocha": true
     }
