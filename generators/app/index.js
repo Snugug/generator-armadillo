@@ -86,7 +86,7 @@ module.exports = yeoman.Base.extend({
       'videos',
       'audio',
       'fonts',
-      'documents'
+      'docs'
     ];
 
     this.fs.copy(
