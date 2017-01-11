@@ -1,6 +1,6 @@
 {
   "name": "generator-armadillo",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Let Armadillo build your static site for you",
   "homepage": "https://github.com/Snugug/gulp-armadillo",
   "author": {
