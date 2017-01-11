@@ -4,7 +4,8 @@
   "scripts": {
     "gulp": "gulp",
     "start": "gulp",
-    "test": "gulp deploy:dry"
+    "test": "gulp deploy:dry",
+    "publish:github": "gulp publish"
   },
   "dependencies": {
     "gulp": "^3.9.1",

@@ -1,10 +1,31 @@
+# Turn off sudo
 sudo: false
+
+#########################
+## Set Travis to Node
+#########################
 language: node_js
 node_js:
   - '6'
 cache:
   directories:
     - node_modules
+
+#########################
+## Ignore gh-pages branch
+#########################
 branches:
   except:
     - gh-pages
+
+#########################
+## Deploy to GitHub Pages on successful build on master
+#########################
+before_deploy: git config --global user.email publish@travis.github && git config --global user.name "Travis"
+deploy:
+  - edge: true
+    skip_cleanup: true
+    provider: script
+    script: npm run publish:github
+    on:
+      branch: master
