@@ -39,7 +39,7 @@
     "gulp-mocha": "^2.0.0",
     "gulp-nsp": "^2.1.0",
     "gulp-plumber": "^1.0.0",
-    "punchcard-commit-msg": "^1.0.1",
+    "punchcard-commit-msg": "^1.1.0",
     "punchcard-semantic-release": "^2.0.4",
     "semantic-release": "^6.3.2",
     "yeoman-assert": "^2.0.0",
