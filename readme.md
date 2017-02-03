@@ -1,4 +1,6 @@
 # generator-armadillo [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url] [![Coverage percentage][coveralls-image]][coveralls-url]
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/Snugug/generator-armadillo.svg)](https://greenkeeper.io/)
 > Let [Armadillo](https://github.com/Snugug/gulp-armadillo) build your static site for you
 
 ```
