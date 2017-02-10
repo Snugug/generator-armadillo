@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "gulp": "^3.9.1",
-    "gulp-armadillo": "^3.6.0",
+    "gulp-armadillo": "^4.1.1",
     "sass-toolkit": "^2.10.2"
   }
 }
